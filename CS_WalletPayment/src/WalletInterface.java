@@ -32,8 +32,9 @@ public class  WalletInterface extends Wallet_Methods {
         System.out.println("Enter 1 to Verify That You're Not A Robot");
         String Robot_verify = sc.nextLine();
 
-        // Add and format date
-        if(Robot_verify == "1"){
+
+        if(Robot_verify.equals("1")){
+
             System.out.println(" 1.) Press 1 to Login");
             System.out.println(" 2.) Press 2 to Create Account");
 
