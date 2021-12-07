@@ -36,7 +36,12 @@ public class  WalletInterface extends Wallet_Methods {
         if(Robot_verify.equals("1")){
 
             System.out.println(" 1.) Press 1 to Login");
+            // If equals 1 declare method in Wallets_Methods
             System.out.println(" 2.) Press 2 to Create Account");
+
+// Call Method
+
+
 
         }else{
 
