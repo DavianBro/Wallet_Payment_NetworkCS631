@@ -51,6 +51,13 @@ public class  WalletInterface extends Wallet_Methods {
                 System.out.println(" 1.) Press 1 to Login");
                 System.out.println(" 2.) Press 2 to Create Account");
 
+                String User_Response = sc.nextLine();
+
+
+
+
+                // Call methods
+
             }else{
 
                 System.out.println(" Access Denied to Wallet Payment Network. Please Try Again");
