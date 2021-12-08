@@ -6,10 +6,17 @@ public class Wallet_Methods {
 
     public static void login_verification (String x) {
 
-    if(x.equals("1")){
+    if(x.equals("1")) {
     System.out.println("Enter Email Address");
     String Email_Address = sc.nextLine();
     // Initialize sql to Email Address and check if its in the data base
+        System.out.println("Enter Password");
+        String Login_Password = sc.nextLine();
+        // Login Password must equal 0631
+
+        
+
+
 
 
 }
