@@ -8,8 +8,8 @@ public class Wallet_Methods {
 
     if(x.equals("1")){
     System.out.println("Enter Email Address");
-    String userName = sc.nextLine();
-
+    String Email_Address = sc.nextLine();
+    // Initialize sql to Email Address and check if its in the data base
 
 
 }

@@ -55,7 +55,8 @@ public class  WalletInterface extends Wallet_Methods {
                 // User's Response is store in Variable
                 String User_Response = sc.nextLine();
                     if(User_Response.equals("1")){
-                        
+
+                        // Method is called from Wallet_Methods
                         login_verification("1");
 
                     } else if (User_Response.equals("2")){
