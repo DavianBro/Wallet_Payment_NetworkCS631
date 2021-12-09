@@ -13,8 +13,12 @@ public class Wallet_Methods {
         System.out.println("Enter Password");
         String Login_Password = sc.nextLine();
         // Login Password must equal 0631
+            if (Login_Password.equals("0631")){
 
-        
+
+                
+            }
+
 
 
 
