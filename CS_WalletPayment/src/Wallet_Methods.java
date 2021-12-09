@@ -28,11 +28,11 @@ public class Wallet_Methods {
                 String CheckBalance = "4.Check Balance";
                 String Exit = "5. Exit";
 
-                Scanner reader = new Scanner(System.in);
+
                 System.out.printf("%15s %15s %20s\n", Withdraw, Deposit, TransferFunds );
                 System.out.printf("\n");
                 System.out.printf("\t%18s%18s\n", CheckBalance, Exit);
-                int optionmenu = reader.nextInt();
+                // int optionmenu = sc.nextInt();
 
 
             }
