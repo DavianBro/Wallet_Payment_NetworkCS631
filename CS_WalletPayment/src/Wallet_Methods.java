@@ -13,10 +13,15 @@ public class Wallet_Methods {
         System.out.println("Enter Password");
         String Login_Password = sc.nextLine();
         // Login Password must equal 0631
-            if (Login_Password.equals("0631")){
-
+            if (Login_Password.equals("0631")){ // and equals an email in the database
+                System.out.println();
+                System.out.println();
+                System.out.println("Welcome Back User Here Are Your Options: "); // Change User to name in Databse
+                System.out.println(" --------------------------------------------");
 
                 
+
+
             }
 
 
