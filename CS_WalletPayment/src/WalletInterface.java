@@ -9,19 +9,8 @@ public class  WalletInterface extends Wallet_Methods {
 
     public static void main(String[]args) throws Exception {
 
-        //////////////////////////////////////////////////////////////////
-        // to be customized according to your own devices
-        String url = "jdbc:mysql://localhost:3306/WalletNetwork";
-        String uname = "root"; //username I have set in my device, change to whatever you have set in your device
-        String password = "Wallet_network631";
+       // if  sql_connection();
 
-                //; //password I have set in my device, change to whatever your password is
-        ///////////////////////////////////////////////////////////////////
-
-        //setting up connection with local database
-      //  try {
-           // Class.forName("com.mysql.cj.jdbc.Driver");
-           // Connection con = DriverManager.getConnection(url, uname, password);
 
 
             // Declare Time and Date
@@ -50,8 +39,7 @@ public class  WalletInterface extends Wallet_Methods {
 
             if(Robot_verify.equals("1")){
 
-                System.out.println(" 1.) Press 1 to Login");
-                System.out.println(" 2.) Press 2 to Create Account");
+                System.out.println(" Press 1 to Login");
                 // User's Response is store in Variable
                 String User_Response = sc.nextLine();
                     if(User_Response.equals("1")){
@@ -74,25 +62,8 @@ public class  WalletInterface extends Wallet_Methods {
 
             }
 
-           // Scanner login = new Scanner(System.in);
-            //  System.out.print("Please enter your email: ");
-            //  String login_verify = login.next();
-
-            //  Statement st = con.createStatement();
-            //  ResultSet result = st.executeQuery("select EmailAdd from EMAIL;");
-
-            //  while (result.next()) {
-            //     String email_verify = result.getString(1);
-            //    if (login_verify.equals(email_verify)) {
-            //   System.out.println("Thanks for logging in, welcome back");
-            //   }
-
-            //   }
 
 
-            //  con.close();
-            //   } catch (SQLException e) {
-            //      e.printStackTrace();
 
 
 
