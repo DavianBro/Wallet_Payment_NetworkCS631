@@ -43,7 +43,7 @@ public class  WalletInterface extends Wallet_Methods {
                         // Method is called from Wallet_Methods
 
                         //login_verification("1");
-                       // sql_connection();
+
 
                     }  else {
                         System.out.println("Invalid Response!");

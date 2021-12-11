@@ -12,11 +12,11 @@ public class Wallet_Methods {
     static String url = "jdbc:mysql://localhost:3306/WalletNetwork";
     static  String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
     static String uname = "root"; //username I have set in my device, change to whatever you have set in your device
-   static  String password = "Wallet_network631";
+    static  String password = "Wallet_network631";
 
 
     // Method to Connect to SQL Database
-    public static void sql_connection() throws ClassNotFoundException, SQLException {
+    public static Connection sql_connection() throws ClassNotFoundException, SQLException {
 
 
 
@@ -24,6 +24,7 @@ public class Wallet_Methods {
 
             if (conn != null) {
                 System.out.println("Connected to the database!");
+                return conn;
             } else {
                 System.out.println("Failed to make connection!");
             }
@@ -34,21 +35,27 @@ public class Wallet_Methods {
             e.printStackTrace();
         }
 
-
+        return null;
     }
 
     // Login Verification Method
     public static void login_verification (String x) {
 
-    if(x.equals("1")) {
+        if(x.equals("1")) {
 
-    System.out.println("Enter Email Address");
+            System.out.println("Enter Email Address");
 
-    // Declare and Store Email Address Variable
-    String Email_Address = sc.nextLine();
+            // Declare and Store Email Address Variable
+            String Email_Address = sc.nextLine();
 
-    // SQL Email Query From Database
-       // String Email_Query = "SELECT * FROM WalletNetwork.EMAIL WHERE EmailAdd= '$Email_Address'";
+
+
+            //Connection conn = null;
+           // PreparedStatement checkInfo = conn.prepareStatement ("SELECT * FROM EMAIL WHERE EmailAdd ='"+ Email_Address);
+
+
+
+
 
 
         // if email == null then
