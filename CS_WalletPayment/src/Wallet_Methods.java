@@ -4,20 +4,22 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-public class Wallet_Methods {
+public class Wallet_Methods extends dbconnect{
 
     static Scanner sc = new Scanner(System.in);
-
-
-    
 
     // Login Verification Method
     public static void login_verification (String x) {
 
+        // CREATE DB CONNECTION OBJECT
+        dbconnect db = new dbconnect();
+
+        Connection conn= null;
+        Statement stmt = null;
+        
         if(x.equals("1")) {
 
             System.out.println("Enter Email Address");
-
             // Declare and Store Email Address Variable
             String Email_Address = sc.nextLine();
 
