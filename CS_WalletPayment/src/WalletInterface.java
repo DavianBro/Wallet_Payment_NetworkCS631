@@ -9,10 +9,6 @@ public class  WalletInterface extends Wallet_Methods {
 
     public static void main(String[]args) throws Exception {
 
-       // if  sql_connection();
-
-
-
             // Declare Time and Date
             LocalDateTime now = LocalDateTime.now();
             // Format Date and Time
@@ -46,11 +42,11 @@ public class  WalletInterface extends Wallet_Methods {
 
                         // Method is called from Wallet_Methods
                         login_verification("1");
+                        sql_connection();
 
-                    } else if (User_Response.equals("2")){
-
-                    } else {
-
+                    }  else {
+                        System.out.println("Invalid Response!");
+                        System.exit(0);
                     }
 
                 // Call methods

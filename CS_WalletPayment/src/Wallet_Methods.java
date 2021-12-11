@@ -1,57 +1,41 @@
 
 import java.util.*;
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 public class Wallet_Methods {
 
     static Scanner sc = new Scanner(System.in);
 
     // Method to Connect to SQL Database
     public static void sql_connection() throws ClassNotFoundException, SQLException {
-        // to be customized according to your own devices
+
+        // Initialize DB Variables
         String url = "jdbc:mysql://localhost:3306/WalletNetwork";
+        String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
         String uname = "root"; //username I have set in my device, change to whatever you have set in your device
         String password = "Wallet_network631";
 
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-            // Establish connection to MySQL
-            conn = DriverManager.getConnection(url, uname, password);
 
 
-        } catch (InstantiationException e) {
+
+
+        try (Connection conn = DriverManager.getConnection(url, uname, password)) {
+
+            if (conn != null) {
+                System.out.println("Connected to the database!");
+            } else {
+                System.out.println("Failed to make connection!");
+            }
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
 
 
-        Statement stmt = conn.createStatement();
-        stmt.execute("SELECT * FROM `Bank_Account`");
-        stmt.close();
-        conn.close();
-
-        //  try {
-        // Class.forName("com.mysql.cj.jdbc.Driver");
-        // Connection con = DriverManager.getConnection(url, uname, password);
-
-        //  Statement st = con.createStatement();
-        //  ResultSet result = st.executeQuery("select EmailAdd from EMAIL;");
-
-        //  while (result.next()) {
-        //     String email_verify = result.getString(1);
-        //    if (login_verify.equals(email_verify)) {
-        //   System.out.println("Thanks for logging in, welcome back");
-        //   }
-
-        //   }
-
-
-        //  con.close();
-        //   } catch (SQLException e) {
-        //      e.printStackTrace();
     }
 
     // Login Verification Method
@@ -102,7 +86,5 @@ public class Wallet_Methods {
     }
 
     }
-
-
 
 }
