@@ -17,10 +17,6 @@ public class Wallet_Methods {
         String uname = "root"; //username I have set in my device, change to whatever you have set in your device
         String password = "Wallet_network631";
 
-
-
-
-
         try (Connection conn = DriverManager.getConnection(url, uname, password)) {
 
             if (conn != null) {
@@ -48,7 +44,15 @@ public class Wallet_Methods {
     // Declare and Store Email Address Variable
     String Email_Address = sc.nextLine();
 
+    // SQL Email Query From Database
+        String Email_Query = "SELECT * FROM WalletNetwork.EMAIL WHERE EmailAdd= '$Email_Address'";
+
+
+        // if email == null then
+
     // If Login Equals Email in db then prompt user for password
+
+
     // Initialize sql to Email Address and check if its in the data base
         System.out.println("Enter Password");
         String Login_Password = sc.nextLine();
@@ -61,25 +65,20 @@ public class Wallet_Methods {
 
                 System.out.println();
                 //System.out.print
-                String Deposit = "1. Deposit";
-                String Send_Money = "2. Send Money";
-                String Receive_Funds = "3. Receive";
-                String Wallet_History = "4. Wallet Payment History ";
-                String CheckBalance = "5.Check Balance";
-                String Exit = "6. Exit";
+                String Send_Money = "1. Send Money";
+                String Request_Funds = "2. Request Money";
+                String Wallet_History = "3. Wallet Payment History ";
+                String Account_info = "4. Account Information";
+                String Exit = "5. Exit";
 
 
-                System.out.printf("%15s %15s %15s %15s \n",  Deposit, Send_Money, Receive_Funds, Wallet_History);
+                System.out.printf(" %15s %15s %15s \n",  Send_Money, Request_Funds, Wallet_History);
                 System.out.printf("\n");
-                System.out.printf("\t%18s%18s\n", CheckBalance, Exit);
+                System.out.printf("\t%18s%18s\n", Account_info, Exit);
                 // int optionmenu = sc.nextInt();
 
 
             }
-
-
-
-
 
 } else{
         System.out.println(" Invalid Input. Try Again!");

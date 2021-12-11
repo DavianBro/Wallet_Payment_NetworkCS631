@@ -38,18 +38,17 @@ public class  WalletInterface extends Wallet_Methods {
                 System.out.println(" Press 1 to Login");
                 // User's Response is store in Variable
                 String User_Response = sc.nextLine();
-                    if(User_Response.equals("1")){
-
+                    if(User_Response.equals("1")) {
+                        // Test SQL Connection 1st if goof then run the other methods
                         // Method is called from Wallet_Methods
-                        login_verification("1");
-                        sql_connection();
+
+                        //login_verification("1");
+                       // sql_connection();
 
                     }  else {
                         System.out.println("Invalid Response!");
                         System.exit(0);
                     }
-
-                // Call methods
             // Else Statement for the Robot Verification
             }else{
 
@@ -58,25 +57,17 @@ public class  WalletInterface extends Wallet_Methods {
 
             }
 
-
-
-
-
-
-        /*
-      * Once Logged in
-      * Account info
-      * Send money
-      * Search Transactions
-      * Request Money
-      * Search Statements
-      * Signout
-      * Add or remove email, bank account, phone number, modify details
-
-       */
-
-
-
-
 }
 }
+
+/*
+ * Once Logged in
+ * Account info
+ * Send money
+ * Search Transactions
+ * Request Money
+ * Search Statements
+ * Signout
+ * Add or remove email, bank account, phone number, modify details
+
+ */
