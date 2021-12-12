@@ -20,7 +20,6 @@ public class Wallet_Methods extends dbconnect {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection con = DriverManager.getConnection(url, uname, password);
 
-
                 if(x.equals("1")) {
 
                     System.out.println("Enter Email Address");
@@ -59,6 +58,9 @@ public class Wallet_Methods extends dbconnect {
                                     System.out.printf("\n");
                                     System.out.printf("\t%18s%18s\n", Account_info, Exit);
 
+                                    String User_Menu_Input = sc.nextLine();
+                                    User_Options(User_Menu_Input );
+
                                 }
                             }
 
@@ -84,6 +86,12 @@ public static void User_Options(String input){
 
         String [] options = {"1", "2", "3","4","5"};
 
+        // If option is not in options array give error
+        // If it is in the option array do switch case 
+
+       // Switch Case on input
+        // Take in User Input
+        // Use a Switch Case
 
 
 
