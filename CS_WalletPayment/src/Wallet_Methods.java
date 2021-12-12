@@ -36,7 +36,7 @@ public class Wallet_Methods extends dbconnect {
                             // Had to remove while LOOP was giving error
                             String email_verify = result.getString(1);
                             if (Email_Address.equals(email_verify)) {
-                                System.out.println("User " + Email_Address + " Identified in Database, Please Enter Password");
+                                System.out.println("User Email " + Email_Address + " Identified in Database, Please Enter Password");
                                 System.out.println();
                                 System.out.println("Enter Password");
                                 String Login_Password = sc.nextLine();
@@ -81,6 +81,9 @@ public class Wallet_Methods extends dbconnect {
 
 
 public static void User_Options(String input){
+
+        String [] options = {"1", "2", "3","4","5"};
+
 
 
 
