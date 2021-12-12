@@ -17,7 +17,9 @@ public class Test_Class extends Wallet_Methods  {
             // to be customized according to your own devices
             String url = "jdbc:mysql://localhost:3306/WalletNetwork";
             String uname = "root"; //username I have set in my device, change to whatever you have set in your device
-            String password = "Wallet_network631"; //password I have set in my device, change to whatever your password is
+            String password = "Dav1an23"; //password I have set in my device, change to whatever your password is
+
+            //"Wallet_network631";
             ///////////////////////////////////////////////////////////////////
 
             //setting up connection with local database
@@ -67,15 +69,21 @@ public class Test_Class extends Wallet_Methods  {
                 String login_verify = login.next();
 
                 Statement st = con.createStatement();
-                ResultSet result = st.executeQuery("select EmailAdd from EMAIL;");
+                ResultSet result = st.executeQuery("select EmailAdd from EMAIL where EmailAdd ='"+ login_verify + "';");
+
+                // if (result.next()) {whatever the code}
+                //else {system.out.println("cannot be found")}
 
                 while (result.next()) {
                     String email_verify = result.getString(1);
                     if (login_verify.equals(email_verify)) {
                         System.out.println("Thanks for logging in, welcome back");
+                    } else{
+                        System.out.println("Cannot be found");
                     }
 
                 }
+
 
 
                 con.close();
