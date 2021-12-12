@@ -20,10 +20,11 @@ public class Wallet_Methods extends dbconnect {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection con = DriverManager.getConnection(url, uname, password);
 
+
                 if(x.equals("1")) {
 
                     System.out.println("Enter Email Address");
-
+                    System.out.println("Connected to the database!");
                     // Declare and Store Email Address Variable
                     String Email_Address = sc.nextLine();
 
@@ -94,6 +95,7 @@ public class Wallet_Methods extends dbconnect {
 
             } catch (SQLException e) {
                 e.printStackTrace();
+
             }
 
 
