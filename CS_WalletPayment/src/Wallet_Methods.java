@@ -24,21 +24,9 @@ public class Wallet_Methods extends dbconnect{
             String Email_Address = sc.nextLine();
 
             //  Query Data Base to see if Email is in Data base
-           final String queryCheck = "SELECT * from EMAIL WHERE EmailAdd  = Email_Address";
-            try (PreparedStatement prepStmt = conn.prepareStatement(queryCheck)) {
-                prepStmt.setString(1, "emailId");
-                ResultSet rs = prepStmt.executeQuery();
-
-                if (rs.next()) {
-                    System.out.println("Row with email found");
-                } else {
-                    System.out.println("Not Found");
-                    // you can write update code here
-                }
-
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+           final String queryCheck = "SELECT * from EMAIL WHERE EmailAdd  = " +  Email_Address;
+            Statement st = conn.createStatement();
+            ResultSet result = st.executeQuery(queryCheck);
 
 
             // if email == null then
@@ -49,6 +37,7 @@ public class Wallet_Methods extends dbconnect{
     // Initialize sql to Email Address and check if its in the data base
         System.out.println("Enter Password");
         String Login_Password = sc.nextLine();
+
         // Login Password must equal 0631
             if (Login_Password.equals("0631")){ // and equals an email in the database
                 System.out.println();
@@ -57,13 +46,11 @@ public class Wallet_Methods extends dbconnect{
                 System.out.println(" --------------------------------------------");
 
                 System.out.println();
-                //System.out.print
                 String Send_Money = "1. Send Money";
                 String Request_Funds = "2. Request Money";
                 String Wallet_History = "3. Wallet Payment History ";
                 String Account_info = "4. Account Information";
                 String Exit = "5. Exit";
-
 
                 System.out.printf(" %15s %15s %15s \n",  Send_Money, Request_Funds, Wallet_History);
                 System.out.printf("\n");

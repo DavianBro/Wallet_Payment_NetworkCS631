@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.sql.*;
 
-public class  WalletInterface extends Wallet_Methods {
+public class WalletInterface extends Wallet_Methods {
 
     public static void main(String[]args) throws Exception {
 
