@@ -42,7 +42,7 @@ public class  WalletInterface extends Wallet_Methods {
                         // Test SQL Connection 1st if goof then run the other methods
                         // Method is called from Wallet_Methods
 
-                        //login_verification("1");
+                        login_verification("1");
 
 
                     }  else {

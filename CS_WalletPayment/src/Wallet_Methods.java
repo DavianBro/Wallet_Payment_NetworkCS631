@@ -9,12 +9,12 @@ public class Wallet_Methods extends dbconnect{
     static Scanner sc = new Scanner(System.in);
 
     // Login Verification Method
-    public static void login_verification (String x) {
+    public static void login_verification (String x) throws SQLException, ClassNotFoundException {
 
         // CREATE DB CONNECTION OBJECT
         dbconnect db = new dbconnect();
 
-        Connection conn= null;
+        Connection conn = db.connect();
         Statement stmt = null;
 
         if(x.equals("1")) {
@@ -25,14 +25,23 @@ public class Wallet_Methods extends dbconnect{
 
             //  Query Data Base to see if Email is in Data base
            final String queryCheck = "SELECT * from EMAIL WHERE EmailAdd  = Email_Address";
+            try (PreparedStatement prepStmt = conn.prepareStatement(queryCheck)) {
+                prepStmt.setString(1, "emailId");
+                ResultSet rs = prepStmt.executeQuery();
+
+                if (rs.next()) {
+                    System.out.println("Row with email found");
+                } else {
+                    System.out.println("Not Found");
+                    // you can write update code here
+                }
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
 
 
-
-
-
-
-
-        // if email == null then
+            // if email == null then
 
     // If Login Equals Email in db then prompt user for password
 
@@ -69,5 +78,10 @@ public class Wallet_Methods extends dbconnect{
     }
 
     }
+
+
+
+
+
 
 }
