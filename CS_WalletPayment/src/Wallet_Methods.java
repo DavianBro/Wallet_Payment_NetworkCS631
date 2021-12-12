@@ -16,17 +16,16 @@ public class Wallet_Methods extends dbconnect{
 
         Connection conn= null;
         Statement stmt = null;
-        
+
         if(x.equals("1")) {
 
             System.out.println("Enter Email Address");
             // Declare and Store Email Address Variable
             String Email_Address = sc.nextLine();
 
+            //  Query Data Base to see if Email is in Data base
+           final String queryCheck = "SELECT * from EMAIL WHERE EmailAdd  = Email_Address";
 
-
-            //Connection conn = null;
-           // PreparedStatement checkInfo = conn.prepareStatement ("SELECT * FROM EMAIL WHERE EmailAdd ='"+ Email_Address);
 
 
 
