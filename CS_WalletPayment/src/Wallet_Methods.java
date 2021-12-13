@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
 public class Wallet_Methods extends dbconnect {
 
     static Scanner sc = new Scanner(System.in);
@@ -118,7 +117,7 @@ public class Wallet_Methods extends dbconnect {
             System.out.println("SEND MONEY");
             System.out.println("--------------------");
             System.out.println("Welcome, " + name);
-            //work in progress- db connection
+            //- db connection
             Connection con = DriverManager.getConnection(url, uname, password);
             Statement ab = con.createStatement();
             //user input
@@ -150,6 +149,7 @@ public class Wallet_Methods extends dbconnect {
             //SEND STATEMENTS TO SQL
             ab.executeUpdate(sendSql);
             ab.executeUpdate(sendSql2);
+            ab.executeUpdate(sendSql3);
             //RECEIPT
             System.out.print("Sending Money to:  "+ recipient+"\n");
             System.out.print("\n"+"-------------------------------"+"\n");
@@ -162,37 +162,83 @@ public class Wallet_Methods extends dbconnect {
 
             //back to menu
             UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
-            ///SQL
-        } else if (User_Menu_Input.equals("2")) {
+            ///
+            } else if (User_Menu_Input.equals("2")) {
             System.out.println("REQUEST MONEY");
             System.out.println("--------------------");
-            UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
-            ///SQL
-        } else if (User_Menu_Input.equals("3")) {
-            System.out.println("Wallet Payment History");
-            System.out.println("--------------------");
-            UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
-            ///SQL
-            
-            // Complete
-        } else if (User_Menu_Input.equals("4")) {
-            System.out.println("ACCOUNT INFORMATION");
-            System.out.println("--------------------");
-            System.out.println("Name: " + name);
-            System.out.println("SSN: " + ssn_verify);
-            System.out.println("Phone Number: " + phoneno);
-            System.out.println("Balance: $" + balance);
-            System.out.println("Bank ID: " + bankid);
-            System.out.println("Bank Account Number: " + banumber);
-            System.out.println("PBA Verfied: " + pbaverified);
-            System.out.println("--------------------");
+            //
+            //- db connection
+            Connection con = DriverManager.getConnection(url, uname, password);
+            Statement ab = con.createStatement();
+            //user input
+            System.out.println("Enter Phone Number to request payment from user:");
+            // Declare and Store recipient Variable (Identifier)
+            String recipientreq = sc.nextLine();
+            //user input
+            System.out.println("Enter Amount to Request:");
+            // Declare and Store request amount Variable
+            String amountreq = sc.nextLine();
+            //user input
+            System.out.println("Enter Memo:");
+            // Declare and Store memo Variable
+            String memo1 = sc.nextLine();
+            //date
+            // Declare Time and Date
+            LocalDateTime now = LocalDateTime.now();
+            // Format Date and Time
+            DateTimeFormatter format1 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            //Alter the object now to format
+            String formatDateTime1 = now.format(format1);
+
+            //query 1-- UPDATE REQUEST_TRANSACTION
+            String requestSql = ("INSERT INTO REQUEST_TRANSACTION (Amount,Date_Time,Memo,SSN) VALUES ('" + amountreq + "','" + formatDateTime1 + "','" + memo1 + "','" + ssn_verify + "');");
+            //SEND STATEMENTS TO SQL
+            ab.executeUpdate(requestSql);
+
+            //query request_transaction to find rtid
+            ResultSet rtidresult = ab.executeQuery("SELECT * FROM REQUEST_TRANSACTION where SSN='" + ssn_verify + "' AND Amount='" + amountreq + "';");
+
+            String rtidcheck = null;
+            if (rtidresult.next()) {
+                rtidcheck = rtidresult.getString(1);
+                String transfrom = ("INSERT INTO TRANS_FROM (RTid, Identifier, Percentage) VALUES ('" + rtidcheck + "','" + recipientreq + "','100');");
+                ab.executeUpdate(transfrom);
+            }
+            //RECEIPT
+            System.out.println("REQUEST TRANSACTION RECEIPT" + "\n");
+            System.out.println("----------------------------" + "\n");
+            System.out.println("Request Transaction ID: #" + rtidcheck + "\n");
+            System.out.println("Request from: " + email_verify + "\n");
+            System.out.println("Request to user address: " + recipientreq + "\n");
+            System.out.println("Amount requested: $" + amountreq + "\n");
+            System.out.println("Memo: " + memo1 + "\n");
+            System.out.println("Date/Time: " + formatDateTime1 + "\n");
+            System.out.println("----------------------------" + "\n");
+            //back to menu
             UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
 
-            // Complete
-        } else if (User_Menu_Input.equals("5")) {
-            System.out.println("Thank You! Hope to see you soon :) ");
-            System.exit(0);
+        } else if (User_Menu_Input.equals("3")) {
+                System.out.println("Wallet Payment History");
+                System.out.println("--------------------");
+
+                UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
+                ///SQL
+            } else if (User_Menu_Input.equals("4")) {
+                System.out.println("ACCOUNT INFORMATION");
+                System.out.println("--------------------");
+                System.out.println("Name: " + name);
+                System.out.println("SSN: " + ssn_verify);
+                System.out.println("Phone Number: " + phoneno);
+                System.out.println("Balance: $" + balance);
+                System.out.println("Bank ID: " + bankid);
+                System.out.println("Bank Account Number: " + banumber);
+                System.out.println("PBA Verified: " + pbaverified);
+                System.out.println("--------------------");
+                UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
+            } else if (User_Menu_Input.equals("5")) {
+                System.out.println("Thank You! Hope to see you soon :) ");
+                System.exit(0);
+            }
         }
     }
-}
 //}
