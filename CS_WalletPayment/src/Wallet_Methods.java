@@ -224,6 +224,10 @@ public class Wallet_Methods extends dbconnect {
             Connection con2 = DriverManager.getConnection(url, uname, password);
             //try
             String transid3, Amount3, datetime3, Memo3, CancelReason3, Identifier3, SSN3;
+            int count = 0;
+            int count_trans = 0;
+            int i = 0;
+            int max_trans = 0;
 
             PreparedStatement pstmt;
             ResultSet rs;
@@ -242,6 +246,13 @@ public class Wallet_Methods extends dbconnect {
                 CancelReason3 = rs.getString(5);        // Retrieve the first column value
                 Identifier3 = rs.getString(6);      // Retrieve the first column value
                 SSN3 = rs.getString(7);      // Retrieve the first column value
+                i=Integer.parseInt(Amount3);
+                count += i;
+                count_trans += 1;
+
+                if (max_trans < i) {
+                    max_trans = i;
+                }
                 System.out.println("--------------------");
                 System.out.println("SEND RECEIPT: #" + transid3);
                 System.out.println("Send Transaction ID: " + transid3);
@@ -273,6 +284,12 @@ public class Wallet_Methods extends dbconnect {
                 String Memo4 = rs1.getString(3);      // Retrieve
                 String SSN4 = rs1.getString(4);        // Retrieve
                 Identifier3 = rs1.getString(5);      // Retrieve
+                i=Integer.parseInt(amountrequested4);
+                count += i;
+                count_trans += 1;
+                if (max_trans < i) {
+                    max_trans = i;
+                }
 
                 System.out.println("--------------------");
                 System.out.println("REQUEST RECEIPT: #" + rtid4);
@@ -288,6 +305,12 @@ public class Wallet_Methods extends dbconnect {
             }
             rs1.close();                       // Close the ResultSet                  5
             pstmt1.close();
+            System.out.println("Total Amount you have sent/transferred so far is " + count);
+            System.out.println("--------------------");
+            int average = count / count_trans;
+            System.out.println("Average Amount you have sent/transferred so far is " + average);
+            System.out.println("--------------------");
+            System.out.println("The amount with max transaction is " + max_trans);
 
             // Print the column values
             UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
@@ -372,7 +395,7 @@ public class Wallet_Methods extends dbconnect {
             //System.out.println("Your email: " + email_updated + " has been updated in the database");
             //System.out.println(" --------------------------------------------");
             //UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
-            else if (user_update.equals("4")) {//Add email
+            else if (user_update.equals("3")) {//Add email
                 System.out.print("Enter the email you wish to add: ");
                 // Declare and Store new name
                 String email_updated = sc.nextLine();
@@ -390,7 +413,7 @@ public class Wallet_Methods extends dbconnect {
                 System.out.println("Your email: " + email_updated + " has been updated in the database");
                 System.out.println(" --------------------------------------------");
                 UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
-            } else if (user_update.equals("5")) {//add bank account
+            } else if (user_update.equals("4")) {//add bank account
                 System.out.print("Enter the bank account you wish to add: ");
                 // Declare and Store new name
                 String bank_account = sc.nextLine();
@@ -405,7 +428,7 @@ public class Wallet_Methods extends dbconnect {
                 System.out.println("You have successfully added another bank account");
                 System.out.println(" --------------------------------------------");
                 UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
-            } else if (user_update.equals("6")) { //return to main menu
+            } else if (user_update.equals("5")) { //return to main menu
                 UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
 
 
