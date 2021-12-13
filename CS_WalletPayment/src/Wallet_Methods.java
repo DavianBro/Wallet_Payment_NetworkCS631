@@ -173,6 +173,8 @@ public class Wallet_Methods extends dbconnect {
             System.out.println("--------------------");
             UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
             ///SQL
+            
+            // Complete
         } else if (User_Menu_Input.equals("4")) {
             System.out.println("ACCOUNT INFORMATION");
             System.out.println("--------------------");
@@ -185,6 +187,8 @@ public class Wallet_Methods extends dbconnect {
             System.out.println("PBA Verfied: " + pbaverified);
             System.out.println("--------------------");
             UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
+
+            // Complete
         } else if (User_Menu_Input.equals("5")) {
             System.out.println("Thank You! Hope to see you soon :) ");
             System.exit(0);
