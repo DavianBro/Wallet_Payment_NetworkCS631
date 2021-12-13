@@ -221,19 +221,17 @@ public class Wallet_Methods extends dbconnect {
                 System.out.println("Wallet Payment History");
                 System.out.println("--------------------");
 
-                UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
-                ///SQL
             Connection con = DriverManager.getConnection(url, uname, password);
-
+            Statement ts = con.createStatement();
             //ResultSet payment_history_query = history.executeQuery("SELECT Amount, Date_Time, Memo, Identifier FROM SEND_TRANSACTION");
 
 
-            // String payment_history_query = (
-//  Statement st = con.createStatement();
+
+
             // ResultSet result = st.executeQuery("select EmailAdd from EMAIL where EmailAdd ='"+ Email_Address + "';");
 // ResultSet result = st.executeQuery("select * from EMAIL where EmailAdd ='" + Email_Address + "';");
 
-
+            UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
             } else if (User_Menu_Input.equals("4")) {
                 System.out.println("ACCOUNT INFORMATION");
                 System.out.println("--------------------");
