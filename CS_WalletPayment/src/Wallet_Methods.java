@@ -223,7 +223,7 @@ public class Wallet_Methods extends dbconnect {
             //- db connection
             Connection con2 = DriverManager.getConnection(url, uname, password);
             //try
-            String transid3,Amount3, datetime3, Memo3, CancelReason3, Identifier3, SSN3;
+            String transid3, Amount3, datetime3, Memo3, CancelReason3, Identifier3, SSN3;
 
             PreparedStatement pstmt;
             ResultSet rs;
@@ -231,7 +231,7 @@ public class Wallet_Methods extends dbconnect {
             pstmt = con2.prepareStatement("SELECT * FROM SEND_TRANSACTION where SSN=?;");
             // Create a PreparedStatement object    1
 
-            pstmt.setString(1,ssn_verify);      // Assign value to input parameter      2
+            pstmt.setString(1, ssn_verify);      // Assign value to input parameter      2
 
             rs = pstmt.executeQuery();        // Get the result table from the query  3
             while (rs.next()) {               // Position the cursor                  4
@@ -243,7 +243,7 @@ public class Wallet_Methods extends dbconnect {
                 Identifier3 = rs.getString(6);      // Retrieve the first column value
                 SSN3 = rs.getString(7);      // Retrieve the first column value
                 System.out.println("--------------------");
-                System.out.println("SEND RECEIPT: #"+transid3);
+                System.out.println("SEND RECEIPT: #" + transid3);
                 System.out.println("Send Transaction ID: " + transid3);
                 System.out.println("Amount: " + Amount3);
                 System.out.println("Date/Time: " + datetime3);
@@ -258,13 +258,12 @@ public class Wallet_Methods extends dbconnect {
             pstmt.close();                    // Close the PreparedStatement
 
 
-
             PreparedStatement pstmt1;
             ResultSet rs1;
 
-            pstmt1=con2.prepareStatement("SELECT R.Amount, R.Date_Time, R.Memo,R.SSN, T.Identifier, R.RTid FROM REQUEST_TRANSACTION as R inner join TRANS_FROM as T on R.RTId = T.RTId WHERE SSN=?;");
+            pstmt1 = con2.prepareStatement("SELECT R.Amount, R.Date_Time, R.Memo,R.SSN, T.Identifier, R.RTid FROM REQUEST_TRANSACTION as R inner join TRANS_FROM as T on R.RTId = T.RTId WHERE SSN=?;");
             // Create a PreparedStatement object    1
-            pstmt1.setString(1,ssn_verify);      // Assign value to input parameter      2
+            pstmt1.setString(1, ssn_verify);      // Assign value to input parameter      2
 
             rs1 = pstmt1.executeQuery();        // Get the result table from the query  3
             while (rs1.next()) {               // Position the cursor                  4
@@ -276,7 +275,7 @@ public class Wallet_Methods extends dbconnect {
                 Identifier3 = rs1.getString(5);      // Retrieve
 
                 System.out.println("--------------------");
-                System.out.println("REQUEST RECEIPT: #"+rtid4);
+                System.out.println("REQUEST RECEIPT: #" + rtid4);
                 System.out.println("Request Transaction ID: " + rtid4);
                 System.out.println("Date/Time: " + datetime4);
                 System.out.println("Amount Requested: " + amountrequested4);
@@ -290,25 +289,131 @@ public class Wallet_Methods extends dbconnect {
             rs1.close();                       // Close the ResultSet                  5
             pstmt1.close();
 
-                // Print the column values
+            // Print the column values
+            UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
+
+        } else if (User_Menu_Input.equals("4")) {
+            System.out.println("ACCOUNT INFORMATION");
+            System.out.println("--------------------");
+            System.out.println("Name: " + name);
+            System.out.println("SSN: " + ssn_verify);
+            System.out.println("Phone Number: " + phoneno);
+            System.out.println("Balance: $" + balance);
+            System.out.println("Bank ID: " + bankid);
+            System.out.println("Bank Account Number: " + banumber);
+            System.out.println("PBA Verified: " + pbaverified);
+            System.out.println("--------------------");
+
+            //- db connection
+            Connection con = DriverManager.getConnection(url, uname, password);
+            Statement ab = con.createStatement();
+            System.out.println(" --------------------------------------------");
+            System.out.println("Do you want to update your details?");
+
+            System.out.println();
+            String Update_name = "1. Update name"+"\n";
+            String Update_phone = "2. Add/Update phone number"+"\n";
+            //String update_email = "3. Update email ";
+            String email_add = "3. Add email"+"\n";
+            String bank_add = "4. Add bank account"+"\n";
+            String no = "5. Back to Main Menu"+"\n";
+
+            System.out.printf(Update_name);
+            System.out.printf(Update_phone);
+            System.out.printf(email_add);
+            System.out.printf(bank_add);
+            System.out.printf(no);
+            System.out.println(" --------------------------------------------");
+
+            String user_update = sc.nextLine();
+            if (user_update.equals("1")) {//update name
+                System.out.println("Enter the name you wish to change to:");
+                // Declare and Store new name
+                String name_change = sc.nextLine();
+                //query 1-- UPDATE name
+                String name_sql = ("update USER_ACCOUNT set Name = '" + name_change + "' where SSN = '" + ssn_verify + "';");
+                //SEND STATEMENTS TO SQL
+                ab.executeUpdate(name_sql);
+                System.out.println("Your name has been updated");
+                System.out.println(" --------------------------------------------");
+                UserInput(name_change, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
+            } else if (user_update.equals("2")) {//update phone number
+                System.out.print("Enter the phone number you wish to change to: ");
+                // Declare and Store new name
+                String phone_number = sc.nextLine();
+
+                String phone_updated = ("insert into ELEC_ADDRESS (Identifier, Verified, Type) Values ('" + phone_number + "','False','Phone');");
+                //SEND STATEMENTS TO SQL
+                ab.executeUpdate(phone_updated);
+
+                String phone_updated2 = ("update USER_ACCOUNT set PhoneNo = '" + phone_number + "' where SSN = '" + ssn_verify + "';");
+                //SEND STATEMENTS TO SQL
+                ab.executeUpdate(phone_updated2);
+                System.out.println("Your Phone number " + phone_number + " has been updated in the database");
+                System.out.println(" --------------------------------------------");
+                UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
+            } //else if (user_update.equals("3")) {//update email
+            // System.out.print("Enter the email you wish to change to: ");
+            // Declare and Store new name
+            //String email_updated = sc.nextLine();
+
+//                String phone_updated= ("insert into ELEC_ADDRESS (Identifier, Verified, Type) values ('" + email_updated + "','False','Email');");
+//                //String phone_updated= ("insert into ELEC_ADDRESS (Identifier, Verified, Type) values ('" + email_updated + "','False','Email');");
+//                //SEND STATEMENTS TO SQL
+//                ab.executeUpdate(phone_updated);
+            //String phone_updated4= ("update WalletNetwork.ELEC_ADDRESS set Identifier = '" + email_updated + "' where Identifier ='" + email_verify + "';");
+            //String phone_updated3= ("update WalletNetwork.EMAIL set EmailAdd = '" + email_updated + "' where SSN ='" + ssn_verify + "';");
+
+
+            //String phone_updated2= ("insert into EMAIL (EmailAdd, SSN) values ('" + email_updated + "','" + ssn_verify + "');");
+            //SEND STATEMENTS TO SQL
+            //ab.executeUpdate(phone_updated4);
+            //ab.executeUpdate(phone_updated3);
+            //System.out.println("Your email: " + email_updated + " has been updated in the database");
+            //System.out.println(" --------------------------------------------");
+            //UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
+            else if (user_update.equals("4")) {//Add email
+                System.out.print("Enter the email you wish to add: ");
+                // Declare and Store new name
+                String email_updated = sc.nextLine();
+
+                String phone_updated = ("insert into ELEC_ADDRESS (Identifier, Verified, Type) values ('" + email_updated + "','False','Email') where Identifier='" + phoneno + "';");
+                //SEND STATEMENTS TO SQL
+                //ab.executeUpdate(phone_updated);
+
+                String phone_updated2 = ("insert into EMAIL (EmailAdd, SSN) values ('" + email_updated + "','" + ssn_verify + "');");
+                //SEND STATEMENTS TO SQL
+
+                ab.executeUpdate(phone_updated);
+                ab.executeUpdate(phone_updated2);
+                //ab.executeUpdate(phone_updated2);
+                System.out.println("Your email: " + email_updated + " has been updated in the database");
+                System.out.println(" --------------------------------------------");
+                UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
+            } else if (user_update.equals("5")) {//add bank account
+                System.out.print("Enter the bank account you wish to add: ");
+                // Declare and Store new name
+                String bank_account = sc.nextLine();
+
+                String bank_up = ("insert into BANK_ACCOUNT (BANumber) values ('" + bank_account + "');");
+                //SEND STATEMENTS TO SQL
+                ab.executeUpdate(bank_up);
+
+                String bank_up2 = ("insert into HAS_ADDITIONAL (SSN, BANumber, Verified) values ('" + ssn_verify + "','" + bank_account + "', 'True');");
+                //SEND STATEMENTS TO SQL
+                ab.executeUpdate(bank_up2);
+                System.out.println("You have successfully added another bank account");
+                System.out.println(" --------------------------------------------");
+                UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
+            } else if (user_update.equals("6")) { //return to main menu
                 UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
 
-            } else if (User_Menu_Input.equals("4")) {
-                System.out.println("ACCOUNT INFORMATION");
-                System.out.println("--------------------");
-                System.out.println("Name: " + name);
-                System.out.println("SSN: " + ssn_verify);
-                System.out.println("Phone Number: " + phoneno);
-                System.out.println("Balance: $" + balance);
-                System.out.println("Bank ID: " + bankid);
-                System.out.println("Bank Account Number: " + banumber);
-                System.out.println("PBA Verified: " + pbaverified);
-                System.out.println("--------------------");
-                UserInput(name, ssn_verify, phoneno, balance, bankid, banumber, pbaverified, email_verify);
+
             } else if (User_Menu_Input.equals("5")) {
                 System.out.println("Thank You! Hope to see you soon :) ");
                 System.exit(0);
             }
         }
     }
-
+}
+//}
