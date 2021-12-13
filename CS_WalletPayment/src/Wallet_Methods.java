@@ -223,7 +223,13 @@ public class Wallet_Methods extends dbconnect {
 
             Connection con = DriverManager.getConnection(url, uname, password);
             Statement ts = con.createStatement();
-            //ResultSet payment_history_query = history.executeQuery("SELECT Amount, Date_Time, Memo, Identifier FROM SEND_TRANSACTION");
+            ResultSet payment_history_query = ts.executeQuery("SELECT * FROM SEND_TRANSACTION WHERE SSN='"+ ssn_verify + "';");
+            ResultSet payment_history_query2 = ts.executeQuery("SELECT * FROM REQUEST_TRANSACTION WHERE SSN='" + ssn_verify +"';");
+
+
+
+
+
 
 
 
