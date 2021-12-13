@@ -22,20 +22,35 @@ public class WalletInterface extends Wallet_Methods {
             System.out.print("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
             System.out.print("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
             System.out.printf("\n");
-            System.out.print("============= WELCOME TO THE WALLET PAYMENT NETWORK =============");
+            System.out.print("===================== WELCOME TO THE WALLET PAYMENT NETWORK ====================");
             System.out.printf("\n");
             System.out.print("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
             System.out.print("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
             System.out.printf("\n");
             System.out.printf("\n");
 
+            System.out.println("    ||====================================================================||");
+            System.out.println("    ||(   )                 |   CS631 Deliverable 3  |                (  )||");
+            System.out.println("    ||======================| Wallet Payment Network |====================||");
+            System.out.println("    ||                             CREATED BY...                          ||");
+            System.out.println("    ||                                                                    ||");
+            System.out.println("    ||                          Damian Zalewski                           ||");
+            System.out.println("    ||                                                                    ||");
+            System.out.println("    ||                            Davian Brown                            ||");
+            System.out.println("    ||                                                                    ||");
+            System.out.println("    ||                             Ahmed Ali                              ||");
+            System.out.println("    ||                                                                    ||");
+            System.out.println("    ||====================================================================||");
+            System.out.println("    ||(   )                 | Wallet Payment Network |               (   )||");
+            System.out.println("    ||====================================================================||");
 
-            System.out.println("Enter 1 to Verify That You're Not A Robot");
+
+            System.out.println("Enter 1 to Verify That You're Not A Robot...");
             String Robot_verify = sc.nextLine();
 
             if(Robot_verify.equals("1")){
 
-                System.out.println(" Press 1 to Login");
+                System.out.println("Press 1 to Login...");
                 // User's Response is store in Variable
                 String User_Response = sc.nextLine();
                     if(User_Response.equals("1")) {
@@ -59,15 +74,3 @@ public class WalletInterface extends Wallet_Methods {
 
 }
 }
-
-/*
- * Once Logged in
- * Account info
- * Send money
- * Search Transactions
- * Request Money
- * Search Statements
- * Signout
- * Add or remove email, bank account, phone number, modify details
-
- */
