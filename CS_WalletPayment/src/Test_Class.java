@@ -17,7 +17,7 @@ public class Test_Class extends Wallet_Methods  {
             // to be customized according to your own devices
             String url = "jdbc:mysql://localhost:3306/WalletNetwork";
             String uname = "root"; //username I have set in my device, change to whatever you have set in your device
-            String password = "Dav1an23"; //password I have set in my device, change to whatever your password is
+            String password = ""; //password I have set in my device, change to whatever your password is
 
             //"Wallet_network631";
             ///////////////////////////////////////////////////////////////////
